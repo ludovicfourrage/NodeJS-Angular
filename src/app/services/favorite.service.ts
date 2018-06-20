@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Favorite } from '../shared/favorite';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/catch';
 
 import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
@@ -24,7 +26,7 @@ export class FavoriteService {
 
   isFavorite(id: string) {
     return this.http.get(baseURL + 'favorites/' + id)
-      .catch(error => { return this.processHTTPMsgService.handleError(error); });    
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
   postFavorite(id: string) {

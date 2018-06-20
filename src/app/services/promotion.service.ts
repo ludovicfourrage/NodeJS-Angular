@@ -6,6 +6,7 @@ import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class PromotionService {
@@ -19,13 +20,13 @@ export class PromotionService {
 }
 
   getPromotion(id: String): Observable<Promotion> {
-    return  this.http.get(baseURL + 'promotions/'+ id)
+    return  this.http.get(baseURL + 'promotions/' + id)
     .catch(error => { return this.processHTTPMsgService.handleError(error); });
 }
 
   getFeaturedPromotion(): Observable<Promotion> {
     return this.http.get(baseURL + 'promotions?featured=true')
-    .map(promotions => promotions[0])    
+    .map(promotions => promotions[0])
     .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 }

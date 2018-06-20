@@ -21,7 +21,7 @@ export class DishService {
   }
 
   getDish(id: string): Observable<Dish> {
-    return  this.http.get(baseURL + 'dishes/'+ id)
+    return  this.http.get(baseURL + 'dishes/' + id)
                     .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
@@ -40,6 +40,6 @@ export class DishService {
   postComment(dishId: string, comment: any) {
     return this.http.post(baseURL + 'dishes/' + dishId + '/comments', comment)
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
-    
+
   }
 }

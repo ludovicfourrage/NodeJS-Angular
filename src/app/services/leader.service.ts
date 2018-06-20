@@ -6,6 +6,7 @@ import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LeaderService {
@@ -19,14 +20,13 @@ export class LeaderService {
   }
 
   getLeader(id: string): Observable<Leader> {
-    return  this.http.get(baseURL + 'leaders/'+ id)
+    return  this.http.get(baseURL + 'leaders/' + id)
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
   getFeaturedLeader(): Observable<Leader> {
     return this.http.get(baseURL + 'leaders?featured=true')
-      .map(leaders => leaders[0])    
+      .map(leaders => leaders[0])
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
-
 }
